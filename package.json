@@ -1,0 +1,17 @@
+{
+  "name": "netlify-deploy-bulb",
+  "version": "1.0.0",
+  "description":
+    "A project using the LIFX bulbs to visualize results of Netlify deploys",
+  "scripts": {
+    "clean": "rm netlifybulb.zip",
+    "deploy":
+      "zip -r netlifybulb.zip * && aws lambda update-function-code --function-name \"NetlifyDeployBulb\" --zip-file fileb://netlifybulb.zip"
+  },
+  "author": "Benjamin Lannon",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "lifx-http-api": "^1.0.3"
+  },
+  "license": "MIT"
+}
