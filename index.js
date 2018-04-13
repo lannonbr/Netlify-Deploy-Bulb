@@ -8,30 +8,26 @@ const client = new lifx({
   bearerToken: process.env["token"]
 });
 
+function pulseBulb(color, period, responseBodyJSONString, callback) {
+  client
+    .pulse(lifxBulbSelector, { color, period })
+    .then(() => {
+      callback(null, {
+        statusCode: 200,
+        body: responseBodyJSONString
+      });
+    })
+    .catch(err => console.error(err));
+}
+
 exports.handler = function(event, context, callback) {
-  if (event.queryStringParameters.state == "success") {
-    client
-      .pulse(lifxBulbSelector, {
-        color: "green",
-        period: 5
-      })
-      .then(() => {
-        callback(null, {
-          statusCode: 200,
-          body: JSON.stringify({ state: "Success" })
-        });
-      });
-  } else if (event.queryStringParameters.state == "fail") {
-    client
-      .pulse(lifxBulbSelector, {
-        color: "red",
-        period: 5
-      })
-      .then(() => {
-        callback(null, {
-          statusCode: 200,
-          body: JSON.stringify({ state: "Failure" })
-        });
-      });
+  const { state } = event.queryStringParameters;
+
+  if (state === "success") {
+    console.log("Going green");
+    pulseBulb("green", 5, JSON.stringify({ state: "Success" }), callback);
+  } else if (state === "fail") {
+    console.log("Going red");
+    pulseBulb("red", 5, JSON.stringify({ state: "Failure" }), callback);
   }
 };
