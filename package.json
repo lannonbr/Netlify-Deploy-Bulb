@@ -10,8 +10,8 @@
   },
   "author": "Benjamin Lannon",
   "dependencies": {
-    "dotenv": "^5.0.1",
-    "lifx-http-api": "^1.0.3"
+    "dotenv": "5.0.1",
+    "lifx-http-api": "1.0.3"
   },
   "license": "MIT"
 }
