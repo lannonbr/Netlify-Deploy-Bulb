@@ -1,3 +1,5 @@
+# NOTICE: This package has been deprecated and replaced with https://github.com/lannonbr/netlify-bulb
+
 # Netlify-Deploy-Bulb
 
 I've made a project using the LIFX bulbs to make a setup so when a deploy on Netlify runs, it will respond to a webhook and change the lights to show if a build was successful or not.
